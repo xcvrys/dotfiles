@@ -6,12 +6,15 @@ return {
   },
   event = "VeryLazy",
   config = function()
+    local kanagawa = require("lualine.themes.kanagawa")
+    kanagawa.normal.c.bg = "none"
     require("lualine").setup({
       options = {
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
-        -- ignore_focus = { "help", "nvimtree", "lazy", "mason", "undotree", "lspinfo" },
+        ignore_focus = { "alpha" },
         globalstatus = true,
+        theme = kanagawa,
       },
       sections = {
         lualine_a = {
@@ -51,18 +54,18 @@ return {
           {
             require("lazy.status").updates,
             cond = require("lazy.status").has_updates,
-            color = { fg = "#ff9e64" },
+            color = { fg = "#54546D" },
           },
           {
             "copilot",
             symbols = {
               status = {
                 icons = {
-                  enabled = " ",
-                  sleep = " ",
-                  disabled = " ",
-                  unknown = " ",
-                  warning = " ",
+                  enabled = "",
+                  sleep = "",
+                  disabled = "",
+                  unknown = "",
+                  warning = "",
                 },
               },
               spinners = {
@@ -84,7 +87,7 @@ return {
             show_loading = true,
           },
         },
-        lualine_y = { "filetype" },
+        lualine_y = { "filetype", "location" },
         lualine_z = { { "datetime", style = "%a | %H:%M" } },
       },
     })

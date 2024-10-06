@@ -16,6 +16,7 @@ require("lazy").setup({
   { import = "xcvrys.plugins.lsp" },
   { import = "xcvrys.plugins.git" },
 }, {
+  ui = { border = "rounded" },
   checker = {
     enabled = true,
     notify = false,

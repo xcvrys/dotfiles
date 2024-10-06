@@ -15,7 +15,7 @@ return {
 
     keymap.set("n", "<leader>ss", function()
       vim.cmd("SessionSave")
-      print("Session saved")
+      vim.notify("Session saved", "info", { title = "Auto Session" })
     end, { desc = "Save session" })
   end,
 }

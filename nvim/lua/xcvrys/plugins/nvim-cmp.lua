@@ -2,6 +2,7 @@ local check_backspace = function()
   local col = vim.fn.col(".") - 1
   return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
+
 return {
   "hrsh7th/nvim-cmp",
   event = "InsertEnter",
@@ -24,6 +25,12 @@ return {
     local luasnip = require("luasnip")
 
     local lspkind = require("lspkind")
+
+    require("luasnip.loaders.from_lua").lazy_load({
+      paths = {
+        vim.fn.stdpath("config") .. "/lua/xcvrys/snippets",
+      },
+    })
 
     require("luasnip.loaders.from_vscode").lazy_load()
 

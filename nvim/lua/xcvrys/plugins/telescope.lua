@@ -2,11 +2,11 @@ return {
   "nvim-telescope/telescope.nvim",
   branch = "0.1.x",
   dependencies = {
-    "nvim-lua/plenary.nvim",
-    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-    "nvim-tree/nvim-web-devicons",
-    "folke/todo-comments.nvim",
-    "aznhe21/actions-preview.nvim",
+    "nvim-lua/plenary.nvim", -- telescope dependency
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }, -- fzf
+    "nvim-tree/nvim-web-devicons", -- icons
+    "folke/todo-comments.nvim", -- find todos
+    "aznhe21/actions-preview.nvim", -- preview actions in telescope
   },
   config = function()
     local telescope = require("telescope")
@@ -18,13 +18,37 @@ return {
 
     -- or create your custom action
     local custom_actions = transform_mod({
-      open_trouble_qflist = function(prompt_bufnr)
+      open_trouble_qflist = function()
         trouble.toggle("quickfix")
       end,
     })
 
     telescope.setup({
       defaults = {
+        preview = {
+          mime_hook = function(filepath, bufnr, opts)
+            local is_image = function()
+              local image_extensions = { "png", "jpg" }
+              local split_path = vim.split(filepath:lower(), ".", { plain = true })
+              local extension = split_path[#split_path]
+              return vim.tbl_contains(image_extensions, extension)
+            end
+            if is_image() then
+              local term = vim.api.nvim_open_term(bufnr, {})
+              local function send_output(_, data, _)
+                for _, d in ipairs(data) do
+                  vim.api.nvim_chan_send(term, d .. "\r\n")
+                end
+              end
+              vim.fn.jobstart({
+                "chafa", -- https://github.com/hpjansson/chafa
+                filepath,
+              }, { on_stdout = send_output, stdout_buffered = true, pty = true })
+            else
+              require("telescope.previewers.utils").set_preview_message(bufnr, opts.winid, "Binary cannot be previewed")
+            end
+          end,
+        },
         path_display = { "smart" },
         file_ignore_patterns = {
           "target/",
@@ -96,12 +120,16 @@ return {
     })
 
     local keymap = vim.keymap
-    keymap.set({ "v", "n" }, "<Leader>ca", require("actions-preview").code_actions)
-    keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find " })
-    keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Find string" })
-    keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = "Find Help" })
-    keymap.set("n", "<leader>fw", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor" })
-    keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
+    keymap.set({ "v", "n" }, "<Leader>ca", require("actions-preview").code_actions, { desc = "Code actions" })
+    keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Fuzzy find " })
+    keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Find string" })
+    keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Find Help" })
+    keymap.set("n", "<leader>fw", "<cmd>Telescope grep_string<CR>", { desc = "Find string under cursor" })
+    keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Find todos" })
+    -- keymap.set("n", "<leader>ccp", function()
+    --   local actions = require("CopilotChat.actions")
+    --   require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+    -- end, { desc = "CopilotChat - Prompt actions" })
     keymap.set(
       "n",
       "<leader>fW",

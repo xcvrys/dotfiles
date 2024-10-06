@@ -4,13 +4,14 @@ return {
   init = function()
     vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { silent = true })
     vim.keymap.set("n", "<F1>", ":NvimTreeToggle<CR>", { silent = true })
+    vim.keymap.set("n", "<leader>r", ":NvimTreeRefresh<CR>", { silent = true })
   end,
   config = function()
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
     require("nvim-tree").setup({
       sort = {
-        files_first = false, -- good for Next/ SvelteKit / SSR path related
+        files_first = false, -- good for Next/ SvelteKit / pages tree path related
       },
       view = {
         side = "right",
@@ -18,22 +19,30 @@ return {
         cursorline = true,
       },
       renderer = {
+        root_folder_label = function(path)
+          return ".../" .. vim.fn.fnamemodify(path, ":t")
+        end,
         icons = {
-          git_placement = "signcolumn",
+          show = {
+            file = true,
+            folder = false,
+            git = true,
+          },
+          git_placement = "after",
           glyphs = {
-            default = "",
-            symlink = "",
-            bookmark = "󰆤",
-            modified = "●",
+            --     default = "",
+            --     symlink = "",
+            --     bookmark = "󰆤",
+            --     modified = "●",
             folder = {
-              arrow_closed = "",
-              arrow_open = "",
-              default = "",
-              open = "",
-              empty = "",
-              empty_open = "",
-              symlink = "",
-              symlink_open = "",
+              arrow_closed = "",
+              arrow_open = "",
+              --       default = "",
+              --       open = "",
+              --       empty = "",
+              --       empty_open = "",
+              --       symlink = "",
+              --       symlink_open = "",
             },
             git = {
               unstaged = "u",
@@ -71,7 +80,7 @@ return {
         icons = { error = "E ", warning = "W ", hint = "H ", info = "I " },
       },
       filters = {
-        custom = { "\\.git$" },
+        custom = { "\\.git$", "node_modules" },
       },
       actions = {
         open_file = {

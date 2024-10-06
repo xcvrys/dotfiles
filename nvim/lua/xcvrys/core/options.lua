@@ -39,3 +39,29 @@ opt.isfname:append("@-@")
 
 opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 opt.undofile = true
+
+-- opt.shortmess:append("I")
+
+vim.opt.wildmode = "list:longest,list:full"
+vim.opt.wildignore:append({ ".javac", "node_modules", "*.pyc" })
+vim.opt.wildignore:append({ ".aux", ".out", ".toc" })
+vim.opt.wildignore:append({
+  ".o",
+  ".obj",
+  ".dll",
+  ".exe",
+  ".so",
+  ".a",
+  ".lib",
+  ".pyc",
+  ".pyo",
+  ".pyd",
+  ".swp",
+  ".swo",
+  ".class",
+  ".DS_Store",
+  ".git",
+  ".hg",
+  ".orig",
+})
+vim.opt.suffixesadd:append({ ".rs" }) -- search for suffexes using gf
