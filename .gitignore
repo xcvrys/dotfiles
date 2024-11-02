@@ -1,4 +1,4 @@
-github-copilot
-htop
-nvim.bak
-lazygit
+*
+
+!nvim/
+!nvim/**
