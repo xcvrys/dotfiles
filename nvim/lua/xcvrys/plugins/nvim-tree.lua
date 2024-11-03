@@ -10,6 +10,11 @@ return {
 		vim.g.loaded_netrw = 1
 		vim.g.loaded_netrwPlugin = 1
 		require("nvim-tree").setup({
+			git = {
+				enable = true,
+				ignore = false,
+				timeout = 400,
+			},
 			sort = {
 				files_first = false, -- good for Next/ SvelteKit / pages tree path related
 			},

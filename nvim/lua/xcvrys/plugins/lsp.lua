@@ -22,7 +22,8 @@ return {
 					"marksman",
 					"sqlls",
 					"wgsl_analyzer",
-					"svelte", -- Add Svelte here
+					"svelte",
+					"gopls",
 				},
 			})
 		end,
@@ -43,6 +44,23 @@ return {
 
 			-- Language server configurations
 			setup_server("zls", { cmd = { "zls" } })
+			setup_server("gopls", {
+				cmd = { "gopls" },
+				root_dir = lspconfig.util.root_pattern("go.mod", ".git"),
+				filetypes = {
+					"go",
+					"gomod",
+					"gowork",
+					"gotmpl",
+				},
+				settings = {
+					gopls = {
+						completeunimported = true,
+						usePlaceholders = true,
+						analyses = { unusedparams = true },
+					},
+				},
+			})
 			setup_server("lua_ls")
 			setup_server("wgsl_analyzer")
 			setup_server("jsonls")

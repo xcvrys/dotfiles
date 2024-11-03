@@ -21,13 +21,12 @@ return {
 			},
 			filetypes = {
 				["."] = true,
-				-- sh = function()
-				-- 	if string.match(vim.fs.basename(vim.api.nvim_buf_get_name(0)), "^%.env.*") then
-				-- 		return true
-				-- 	end
-				-- 	return false
-				-- 	-- d
-				-- end,
+				sh = function()
+					if string.match(vim.fs.basename(vim.api.nvim_buf_get_name(0)), "^%.env.*") then
+						return false
+					end
+					return true
+				end,
 			},
 		})
 	end,
