@@ -42,22 +42,22 @@ return {
 		map("n", "[h", gitsigns.prev_hunk, "Prev Hunk")
 
 		-- Actions
-		map("n", "<leader>gs", confirm(gitsigns.stage_hunk, "Stage hunk"), "Stage hunk")
-		map("n", "<leader>gr", confirm(gitsigns.reset_hunk, "Reset hunk"), "Reset hunk")
-		map("n", "<leader>gS", confirm(gitsigns.stage_buffer, "Stage buffer"), "Stage buffer")
-		map("n", "<leader>gR", confirm(gitsigns.reset_buffer, "Reste buffer"), "Reset buffer")
+		map("n", "<leader>ghs", confirm(gitsigns.stage_hunk, "Stage hunk"), "Stage hunk")
+		map("n", "<leader>ghr", confirm(gitsigns.reset_hunk, "Reset hunk"), "Reset hunk")
+		map("n", "<leader>ghS", confirm(gitsigns.stage_buffer, "Stage buffer"), "Stage buffer")
+		map("n", "<leader>ghR", confirm(gitsigns.reset_buffer, "Reste buffer"), "Reset buffer")
 
-		map("n", "<leader>gu", confirm(gitsigns.undo_stage_hunk, "Undo stage hunk"), "Undo stage hunk")
+		map("n", "<leader>ghu", confirm(gitsigns.undo_stage_hunk, "Undo stage hunk"), "Undo stage hunk")
 
-		map("n", "<leader>gp", gitsigns.preview_hunk, "Preview hunk")
+		map("n", "<leader>ghp", gitsigns.preview_hunk, "Preview hunk")
 
-		map("n", "<leader>gB", function()
+		map("n", "<leader>ghB", function()
 			gitsigns.blame_line({ full = true })
 		end, "Blame line")
-		map("n", "<leader>gb", gitsigns.toggle_current_line_blame, "Toggle line blame")
+		map("n", "<leader>ghb", gitsigns.toggle_current_line_blame, "Toggle line blame")
 
-		map("n", "<leader>gd", gitsigns.diffthis, "Diff this")
-		map("n", "<leader>gD", function()
+		map("n", "<leader>ghd", gitsigns.diffthis, "Diff this")
+		map("n", "<leader>ghD", function()
 			gitsigns.diffthis("~")
 		end, "Diff this ~")
 	end,
