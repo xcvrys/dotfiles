@@ -17,6 +17,7 @@ return {
 				html = { "prettier" },
 				json = { "prettier" },
 				markdown = { "prettier" },
+				sql = { "sqlfmt" },
 			},
 			format_on_save = {
 				timeout_ms = 500,
