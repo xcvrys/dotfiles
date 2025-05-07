@@ -8,6 +8,8 @@ return {
 		mappings = {
 			submit = {
 				insert = "<CR>",
+				ask = '<leader>aa',  -- Change from <Space>aa
+				toggle = '<leader>at',  -- Change from <Space>at
 			},
 		},
 	},

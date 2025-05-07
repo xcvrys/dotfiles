@@ -75,11 +75,8 @@ return {
 			end
 
 			-- Common on_attach function for all LSP servers
-			local on_attach = function(client, bufnr)
+			local on_attach = function(_, bufnr)
 				-- Enable navic for breadcrumbs
-				if client.server_capabilities["documentSymbolProvider"] then
-					require("nvim-navic").attach(client, bufnr)
-				end
 
 				-- Key mappings
 				local opts = { buffer = bufnr, silent = true }
@@ -138,20 +135,19 @@ return {
 					}
 				},
 				ts_ls = {
-					filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'svelte', 'vue' },
+					filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact'  },
 				},
 				html = {
-					filetypes = { 'html', 'svelte', 'vue', 'templ' }
+					filetypes = { 'html',  'vue', 'templ' }
 				},
 				cssls = {
-					filetypes = { 'css', 'scss', 'sass', 'svelte', 'vue' }
+					filetypes = { 'css', 'scss'  }
 				},
 				tailwindcss = {
 					filetypes = { 'html', 'css', 'javascript', 'typescript', 'svelte', 'vue', 'javascriptreact', 'typescriptreact' },
 					init_options = {
 						userLanguages = {
 							svelte = "html",
-							vue = "html"
 						}
 					}
 				},
