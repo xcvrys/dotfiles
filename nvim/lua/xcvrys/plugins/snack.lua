@@ -104,19 +104,7 @@ return {
 		picker = {
 			sources = {
 				explorer = {
-finder = "explorer",
-  sort = {
-    sorter = function(a, b)
-      print("Sorting: " .. a.name .. " (" .. a.type .. ") vs " .. b.name .. " (" .. b.type .. ")")
-      if a.type == "file" and b.type == "directory" then
-        return true
-      elseif a.type == "directory" and b.type == "file" then
-        return false
-      else
-        return a.name < b.name
-      end
-    end,
-  },
+					finder = "explorer",
 					layout = {
 						layout = { position = "right" },
 					},
