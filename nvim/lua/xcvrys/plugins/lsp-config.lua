@@ -121,6 +121,22 @@ return {
 
 			-- Server-specific configurations
 			local servers = {
+				gopls = {
+					filetypes = { 'go', 'gomod' },
+					settings = {
+						gopls = {
+							analyses = {
+								unusedparams = true,
+								useany = true,
+							},
+							codelenses = {
+								generate = true,
+								gc_details = true,
+							},
+							staticcheck = true,
+						}
+					}
+				},
 				lua_ls = {
 					settings = {
 						Lua = {
@@ -138,7 +154,7 @@ return {
 					filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact'  },
 				},
 				html = {
-					filetypes = { 'html',  'vue', 'templ' }
+					filetypes = { 'html',  'vue', 'templ', 'svelte'}
 				},
 				cssls = {
 					filetypes = { 'css', 'scss'  }

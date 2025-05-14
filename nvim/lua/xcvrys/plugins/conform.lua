@@ -17,6 +17,8 @@ return {
 				html = { "prettier" },
 				json = { "prettier" },
 				markdown = { "prettier" },
+				go = { "gofmt" },
+				svelte = { "prettier" },
 			},
 			format_on_save = {
 				timeout_ms = 500,
