@@ -40,9 +40,15 @@ if test -f ~/.local/bin/mise;
 	~/.local/bin/mise activate fish | source;
 end
 
+#ssh
+if test -z (pgrep ssh-agent | string collect)
+    eval (ssh-agent -c)
+    set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
+    set -Ux SSH_AGENT_PID $SSH_AGENT_PID
+end
+
 # pnpm
 set -gx PNPM_HOME "/home/xcvrys/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
-# pnpm end
