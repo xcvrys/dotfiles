@@ -1,8 +1,8 @@
 local o = vim.opt
 
 vim.api.nvim_create_user_command("Format", function()
-  vim.lsp.buf.format({ async = true })
-  vim.notify("Formatted 👌")
+	vim.lsp.buf.format({ async = true })
+	vim.notify("Formatted 👌")
 end, {})
 
 vim.g.mapleader = " "
@@ -18,6 +18,7 @@ o.autoindent = true
 o.smartindent = true
 o.hlsearch = false
 o.backup = false
+o.showtabline = 0
 o.scrolloff = 10
 o.shell = "fish"
 o.swapfile = false
@@ -35,6 +36,7 @@ o.splitright = true
 o.number = true
 o.relativenumber = true
 o.cursorline = true
+o.showmode = false
 o.termguicolors = true
 o.signcolumn = "yes"
 
