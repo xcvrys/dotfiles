@@ -26,8 +26,10 @@ o.backupskip = { "/tmp/*", "/private/tmp/*" }
 o.ignorecase = true
 o.smarttab = true
 o.breakindent = true
+o.expandtab = true
 o.shiftwidth = 2
 o.tabstop = 2
+o.softtabstop = 2
 o.wrap = false
 o.backspace = { "start", "eol", "indent" }
 o.path:append({ "**" }) -- Finding files - Search down into subfolders
