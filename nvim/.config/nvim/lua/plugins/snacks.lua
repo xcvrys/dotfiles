@@ -29,9 +29,9 @@ return {
 
 		image = { enabled = false },
 		gh = { enabled = false },
-		quickfile = { enabled = false },
-		scope = { enabled = false },
-		statuscolumn = { enabled = false },
+		quickfile = { enabled = true },
+		scope = { enabled = true },
+		statuscolumn = { enabled = true },
 		explorer = { enabled = true, replace_netrw = true },
 		picker = {
 			sources = {
@@ -58,36 +58,34 @@ return {
 					pane = 1,
 					width = 60,
 					height = 30,
-					cmd = "/home/xcvrys/dotfiles/nvim/.config/nvim/images/file.sh",
+					-- FIXME:
+					-- current: changes GIF on explorer open
+					-- should : change gif on complete dashboard re-draw
+					cmd = "/home/xcvrys/dotfiles/nvim/.config/nvim/images/file.sh; sleep 1",
 					enabled = function()
-						return vim.fn.executable("chafa") == 1 and vim.fn.environ()["SSH_CLIENT"] == nil
+						local script_path = "/home/xcvrys/dotfiles/nvim/.config/nvim/images/file.sh"
+
+						local file_exists = vim.uv.fs_stat(script_path) ~= nil -- Does the file exist?
+						local has_chafa = vim.fn.executable("chafa") == 1 -- Is chafa installed?
+						local is_local = vim.fn.environ()["SSH_CLIENT"] == nil -- Is it a local session (not SSH)?
+
+						return file_exists and has_chafa and is_local
 					end,
 					interactive = false,
 				},
-				-- {
-				-- 	padding = 1,
-				-- 	section = "terminal",
-				-- 	pane = 2,
-				-- 	icon = " ",
-				-- 	title = "Git Status",
-				-- 	enabled = function()
-				-- 		return Snacks.git.get_root() ~= nil
-				-- 	end,
-				-- 	cmd = "git status --short --branch --renames",
-				-- 	ttl = 5 * 60,
-				-- 	indent = 3,
-				-- },
 				function()
 					local cmds = {
 						{
 							title = "Git Graph",
 							icon = " ",
 							cmd = "git-graph --style round --color always --wrap 50 0 8 -f 'oneline'",
+							height = 13,
 						},
 						{
 							title = "Git Status",
 							icon = " ",
 							cmd = "git status --short --branch --renames",
+							height = 13,
 						},
 					}
 					return vim.tbl_map(function(cmd)
@@ -102,9 +100,17 @@ return {
 						}, cmd)
 					end, cmds)
 				end,
-
 				{
+					enabled = function()
+						return Snacks.git.get_root() ~= nil
+					end,
 					indent = 64,
+					section = "startup",
+				},
+				{
+					enabled = function()
+						return Snacks.git.get_root() == nil
+					end,
 					section = "startup",
 				},
 			},
