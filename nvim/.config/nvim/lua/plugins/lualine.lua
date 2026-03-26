@@ -58,17 +58,26 @@ return {
 		},
 	},
 	config = function(_, opts)
-		local current_theme = require("lualine.themes.rose-pine")
+		local theme = require("lualine.themes.rose-pine")
 
-		for _, mode in pairs(current_theme) do
-			for section_name, section in pairs(mode) do
-				if type(section) == "table" and section_name ~= "a" then
-					section.bg = "none"
+		for _, mode in pairs(theme) do
+			if type(mode) == "table" then
+				-- 1. Create/Override Z: Use A's background for Z's foreground
+				-- We do this first so it has its own table reference
+				if mode.a then
+					mode.z = { fg = mode.a.bg, bg = "none" }
+				end
+
+				-- 2. Clean up everything else
+				for name, section in pairs(mode) do
+					if type(section) == "table" and name ~= "a" and name ~= "z" then
+						section.bg = "none"
+					end
 				end
 			end
 		end
 
-		opts.options.theme = current_theme
+		opts.options.theme = theme
 		require("lualine").setup(opts)
 	end,
 }
