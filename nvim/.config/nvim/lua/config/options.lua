@@ -44,6 +44,8 @@ o.clipboard:append({ "unnamed", "unnamedplus" })
 o.undodir = os.getenv("HOME") .. "/.vim/undodir"
 o.undofile = true
 
+o.fillchars:append({ eob = "~" })
+
 -- ignore files vim doesnt use
 o.wildignore:append({ "*/node_modules/*" })
 o.wildignore:append(".git,.hg,.svn")
