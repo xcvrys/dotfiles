@@ -10,7 +10,8 @@ return {
 		},
 	},
 	config = function(_, opts)
-		require("bufferline").setup(opts)
+		local highlights = require("rose-pine.plugins.bufferline")
+		require("bufferline").setup(opts, { highlights = highlights })
 
 		local map = vim.api.nvim_set_keymap
 		local k_opts = { noremap = true, silent = true }
