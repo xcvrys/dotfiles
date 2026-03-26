@@ -1,5 +1,10 @@
 gui:
   nerdFontsVersion: "3"
 
+git:
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never
+
 # to exit immediately if run outside of the Git repository
-notARepository: 'quit'
+notARepository: "quit"
