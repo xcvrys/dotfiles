@@ -78,7 +78,8 @@ return {
 						{
 							title = "Git Graph",
 							icon = " ",
-							cmd = "git-graph --style round --color always --wrap 50 0 8 -f 'oneline'",
+							cmd = "git-graph --no-pager --style round --color always --wrap 50 0 8 -f 'oneline'",
+							width = 50,
 							height = 13,
 						},
 						{
@@ -96,7 +97,7 @@ return {
 								return Snacks.git.get_root() ~= nil
 							end,
 							padding = 1,
-							ttl = 5 * 60,
+							ttl = 2 * 60,
 						}, cmd)
 					end, cmds)
 				end,
