@@ -29,3 +29,9 @@ function killport --description 'Select a port to kill, by pid, port, or command
     # Kill the selected process
     awk '{print $1}' | xargs -r kill -9
 end
+
+function ex
+    set -l target (if count $argv > /dev/null; echo $argv[1]; else; echo "."; end)
+    # Convert path to Windows format if necessary
+    explorer.exe (wslpath -w $target)
+end
