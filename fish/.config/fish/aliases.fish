@@ -27,6 +27,7 @@ abbr dotfiles "cd ~/dotfiles"
 abbr dot "cd ~/dotfiles"
 abbr d "cd ~/dotfiles"
 abbr dev "cd ~/dev"
+abbr pr "cd ~/projects"
 
 
 # Git
@@ -42,3 +43,4 @@ alias reload 'source ~/.config/fish/config.fish'
 alias ip 'curl -s ifconfig.me'
 abbr cls "clear"
 abbr c "clear"
+abbr t "tmux"
