@@ -7,7 +7,7 @@ return {
 	main = "nvim-treesitter.configs",
 	branch = "master",
 	opts = {
-		ensure_installed = { "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "csv", "json" },
+		ensure_installed = { "svelte", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "csv", "json" },
 		auto_install = true,
 		highlight = { enable = true },
 		indent = { enable = true },
