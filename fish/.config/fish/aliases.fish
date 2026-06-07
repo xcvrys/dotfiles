@@ -45,3 +45,4 @@ alias update='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y'
 abbr cls "clear"
 abbr c "clear"
 abbr t "tmux"
+abbr bd="bun dev --open"
