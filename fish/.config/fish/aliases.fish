@@ -41,6 +41,7 @@ abbr lzg "lazygit"
 # Usefull
 alias reload 'source ~/.config/fish/config.fish'
 alias ip 'curl -s ifconfig.me'
+alias update='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y'
 abbr cls "clear"
 abbr c "clear"
 abbr t "tmux"
