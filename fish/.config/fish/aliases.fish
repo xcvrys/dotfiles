@@ -28,6 +28,7 @@ abbr dot "cd ~/dotfiles"
 abbr d "cd ~/dotfiles"
 abbr dev "cd ~/dev"
 abbr pr "cd ~/projects"
+abbr dt "cd ~/dotfiles/"
 
 
 # Git
