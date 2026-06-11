@@ -43,6 +43,6 @@ alias reload 'source ~/.config/fish/config.fish'
 alias ip 'curl -s ifconfig.me'
 alias update='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y'
 abbr cls "clear"
-abbr c "clear"
+abbr c "claude"
 abbr t "tmux"
 abbr bd "bun dev --open"
