@@ -26,7 +26,6 @@ function sourceDfiles --description "Source dotfiles"
 	source $__fish_config_dir/functions.fish
 	source $__fish_config_dir/enviroment.fish
 	source $__fish_config_dir/kanagawa.fish
-
 end
 
 sourceDfiles;
@@ -52,3 +51,6 @@ end
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+
+#fzf
+set -g FZF_PREVIEW_FILE_CMD "bat --style=numbers --color=always --line-range :500"
