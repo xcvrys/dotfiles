@@ -8,7 +8,13 @@ return {
 	version = "1.*",
 	---@module 'blink.cmp'
 	opts = {
-		keymap = { preset = "super-tab" },
+		keymap = {
+			preset = "super-tab",
+			["<C-h>"] = { "snippet_backward", "fallback" },
+			["<C-l>"] = { "snippet_forward", "fallback" },
+			["<C-Left>"] = { "snippet_backward", "fallback" },
+			["<C-Right>"] = { "snippet_forward", "fallback" },
+		},
 		appearance = {
 			nerd_font_variant = "mono",
 		},
@@ -27,9 +33,15 @@ return {
 			window = { border = "rounded" },
 		},
 		sources = {
-			default = { "lsp", "path", "snippets", "buffer" },
+			default = { "snippets", "lsp", "path", "buffer" },
+			providers = {
+				snippets = {
+					opts = {
+						search_paths = { vim.fn.stdpath("config") .. "/snippets" },
+					},
+				},
+			},
 		},
-
 		fuzzy = { implementation = "prefer_rust_with_warning" },
 	},
 	opts_extend = { "sources.default" },
