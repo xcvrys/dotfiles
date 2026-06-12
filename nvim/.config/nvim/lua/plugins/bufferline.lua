@@ -4,9 +4,13 @@ return {
 	dependencies = "nvim-tree/nvim-web-devicons",
 	opts = {
 		options = {
-			buffer_close_icon = " ",
+			indicator = {
+				icon = "",
+			},
+			buffer_close_icon = "",
 			separator_style = { "", "" },
 			diagnostics = "nvim_lsp",
+			modified_icon = " ",
 		},
 	},
 	config = function(_, opts)
