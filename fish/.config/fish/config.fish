@@ -54,3 +54,5 @@ set --export PATH $BUN_INSTALL/bin $PATH
 
 #fzf
 set -g FZF_PREVIEW_FILE_CMD "bat --style=numbers --color=always --line-range :500"
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!node_modules/*" --glob "!.git/*"'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
