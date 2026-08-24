@@ -35,3 +35,7 @@ function ex
     # Convert path to Windows format if necessary
     explorer.exe (wslpath -w $target)
 end
+
+function mkcd --description "Create a directory and navigate into it"
+    command mkdir -p $argv[1] && builtin cd $argv[1]
+end
