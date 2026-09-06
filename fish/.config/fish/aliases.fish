@@ -1,8 +1,8 @@
 # Files
-abbr l 'eza'
-abbr ls 'eza'
-abbr ll 'eza -alh'
-abbr la 'eza -a'
+abbr l 'eza --icons'
+abbr ls 'eza --icons'
+abbr ll 'eza -alh --icons'
+abbr la 'eza -a --icons'
 abbr lt 'eza --tree --ignore-glob="node_modules|.git"'
 abbr tree 'eza --tree --ignore-glob="node_modules|.git"'
 alias bat "batcat --color=always"
@@ -46,7 +46,6 @@ alias update='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y'
 abbr cls "clear"
 abbr c "claude"
 abbr t "tmux"
-abbr bd "bun dev --open"
 abbr b "bun"
 abbr pi "ssh -X xcvrys@192.168.0.212"
 abbr o "omp"
