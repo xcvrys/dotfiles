@@ -19,5 +19,10 @@ return {
 			return
 		end
 		configs.setup(opts)
+		vim.filetype.add({
+			extension = {
+				svx = "markdown",
+			},
+		})
 	end,
 }
