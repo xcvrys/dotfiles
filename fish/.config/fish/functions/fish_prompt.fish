@@ -9,12 +9,15 @@ function fish_prompt
     end
 
     # Display User and Hostname
-    echo -n $USER@$hostname
+    echo -n $USER@$hostname' '
 
     # Display Current Working Directory (with color)
     set_color $color
     echo -n (prompt_pwd)
     set_color normal
+
+    # Display Git Information
+    printf '%s' (fish_git_prompt)
 
     echo -n $symbol
 end
